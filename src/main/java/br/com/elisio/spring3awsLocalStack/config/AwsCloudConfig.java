@@ -23,7 +23,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 @Configuration
-public class LocalStackCloudConfig  {
+public class AwsCloudConfig {
 
     @Value("${spring.cloud.aws.endpoint}")
     private String host;
@@ -63,7 +63,6 @@ public class LocalStackCloudConfig  {
                 .enablePathStyleAccess()
                 .build();
     }
-
 
     @Bean
     public QueueMessagingTemplate queueMessagingTemplate() {

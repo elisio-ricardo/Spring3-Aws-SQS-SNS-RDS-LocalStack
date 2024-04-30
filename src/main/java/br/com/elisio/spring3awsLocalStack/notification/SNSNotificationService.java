@@ -1,4 +1,4 @@
-package br.com.elisio.spring3awsLocalStack.consumer;
+package br.com.elisio.spring3awsLocalStack.notification;
 
 import br.com.elisio.spring3awsLocalStack.config.EventsConfig;
 import br.com.elisio.spring3awsLocalStack.domain.NotificationMessage;
@@ -11,20 +11,22 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class NotificationService {
+public class SNSNotificationService {
 
     private final EventsConfig config;
 
     private final NotificationMessagingTemplate notificationTemplate;
     private final QueueMessagingTemplate messagingTemplate;
 
+    //Esse envia a mensagem para o topico SNS
     public void notifyTopic(NotificationMessage message) {
-        log.info("Notifying topic {}", config.getTopic());
-        notificationTemplate.sendNotification(config.getTopic(), message, "notification");
+        log.info("Notifying topic {}", config.getTopicName());
+        notificationTemplate.sendNotification(config.getTopicName(), message, "notification");
     }
 
-    public void notifyQueue(NotificationMessage message) {
-        log.info("Notifying queue {}", config.getQueue());
-        messagingTemplate.convertAndSend(config.getQueue(), message);
+    //Este envia a mensagem para a Queue
+    public void sendMessageQueue(NotificationMessage message) {
+        log.info("Notifying queue {}", config.getQueueName());
+        messagingTemplate.convertAndSend(config.getQueueName(), message);
     }
 }
