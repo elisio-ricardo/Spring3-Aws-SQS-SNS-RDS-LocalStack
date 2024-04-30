@@ -31,7 +31,7 @@ public class S3FileService {
     @Value("s3-helloworld")
     private String directory;
 
-    @Autowired
+    @Autowired  //classe para trabalhar com paths
     private ResourceLoader resourceLoader;
 
     private ResourcePatternResolver resourcePatternResolver;

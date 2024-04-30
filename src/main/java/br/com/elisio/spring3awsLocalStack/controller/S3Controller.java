@@ -29,7 +29,7 @@ public class S3Controller {
     @Autowired
     private S3FileService fileService;
 
-    @PostMapping("/s3/files")
+    @PostMapping("/s3/files") //criando um arquivo s3 de forma automatica quando chama o metodo, é temporario para exemplo, para usar tem que refatorar
     public ResponseEntity<S3FileDTO> createFile() {
         Path tempFile;
         try {
